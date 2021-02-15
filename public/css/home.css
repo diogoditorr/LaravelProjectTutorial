@@ -1,0 +1,7 @@
+#instagram-header {
+    display: grid;
+}
+
+#instagram-header .profile-photo img {
+    border-radius: 50%;
+}
