@@ -28,16 +28,21 @@
 
     <div id="instagram-header">
         <div class="profile-photo">
-            <img src="https://scontent-gru1-1.cdninstagram.com/v/t51.2885-19/s320x320/97566921_2973768799380412_5562195854791540736_n.jpg?_nc_ht=scontent-gru1-1.cdninstagram.com&_nc_ohc=_retWsCLyFUAX80A1Bb&tp=1&oh=2fb86b1a0ca7443710be797d0f9e948c&oe=6050C49F" alt="">
+            <img class="w-72" src="/storage/{{ $user->profile->image }}" alt="">
         </div>
         <div class="profile-data">
             <div class="top">
                 {{ $user->username }}
-                <a href="#">Add New Post</a>
+                @can('update', $user->profile)
+                    <a href="/post/create">Add New Post</a>
+                @endcan
             </div>
+            @can('update', $user->profile)
+                <a href="/profile/{{ $user->id }}/edit">Edit Profile</a>
+            @endcan
             <div class="profile-history">
                 <ul>
-                    <li><b>360</b> posts</li>
+                    <li><b>{{ $user->posts()->count() }}</b> posts</li>
                     <li><b>65.5K</b> followers</li>
                     <li><b>295</b> following</li>
                 </ul>
@@ -49,8 +54,12 @@
     </div>
 
     <div class="instagram-posts">
-        <div class="instagram-post">Photo</div>
-        <div class="instagram-post">Photo</div>
-        <div class="instagram-post">Photo</div>
+        @foreach($user->posts as $post)
+            <div class="instagram-post">
+                <a href="/post/{{ $post->id }}">
+                    <img src="/storage/{{ $post->image }}" alt="">
+                </a>
+            </div>
+        @endforeach
     </div>
 </x-app-layout>

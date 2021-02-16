@@ -23,9 +23,25 @@ Route::get('/', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
-Route::get('/profile/{user}', [ProfilesController::class, 'index']
-)->middleware(['auth'])->name('profile.show');
+// middleware(['auth']) - Check for authenticaion, if not logged in. 
+// Go to login page
 
-Route::get('/post/create', [PostsController::class, 'create'])->name('post.create');
+Route::get('/profile/{user}', [ProfilesController::class, 'index']
+)->name('profile.show');
+
+Route::patch('/profile/{user}', [ProfilesController::class, 'update']
+)->name('profile.update');
+
+Route::get('/profile/{user}/edit', [ProfilesController::class, 'edit']
+)->name('profile.edit');
+
+Route::post('/post', [PostsController::class, 'store']
+)->name('post.store');
+
+Route::get('/post/create', [PostsController::class, 'create']
+)->name('post.create');
+
+Route::get('/post/{post}', [PostsController::class, 'show']
+)->name('post.show');
 
 require __DIR__.'/auth.php';

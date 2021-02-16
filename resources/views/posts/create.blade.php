@@ -1,7 +1,11 @@
 <x-app-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
         <div class="row">
             @csrf
+
+            <div>
+                <h1>Add New Post</h1>
+            </div>
 
             <!-- Name -->
             <div>
@@ -11,7 +15,7 @@
                     id="caption" 
                     class="block mt-1 w-full" 
                     type="text" 
-                    name="caption" 
+                    name="caption"
                     :value="old('caption')" 
                     required 
                     autofocus 
@@ -20,8 +24,12 @@
 
             <div>
                 <x-label for="image" :value="__('Post Image')" />
-                <x-input type="file" id="image" name="image"></x-input>
+                <x-input type="file" id="image" name="image" required></x-input>
             </div>
-    </div>
+
+            <div>
+                <button>Add New Post</button>
+            </div>
+        </div>
     </form>
 </x-app-layout>
