@@ -7,14 +7,20 @@
         <div>
             <div>
                 <div>
-                    <img src="/storage/{{ $post->user->profile->image}}" alt="" class="w-72">
+                    <img src="/storage/{{ $post->user->profile->image }}" alt="" class="w-72">
 
-                    <h3>
+                    <a href="/profile/{{ $post->user->id }}">
                         {{ $post->user->username }}
-                    </h3>
+                    </a>
+                    <a href="#">Follow</a>
                 </div>
 
+                <hr>
+
                 <p>
+                    <a href="/profile/{{ $post->user->id }}">
+                        {{ $post->user->username }}
+                    </a>
                     {{ $post->caption }} 
                 </p>
             </div>

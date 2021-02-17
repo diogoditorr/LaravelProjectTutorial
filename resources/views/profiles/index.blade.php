@@ -28,14 +28,20 @@
 
     <div id="instagram-header">
         <div class="profile-photo">
-            <img class="w-72" src="/storage/{{ $user->profile->image }}" alt="">
+            <img class="w-72" src="{{ $user->profile->profileImage() }}" alt="">
         </div>
         <div class="profile-data">
             <div class="top">
-                {{ $user->username }}
+                <div>
+                    {{ $user->username }}
+
+                    <follow-button></follow-button>
+                </div>
+
                 @can('update', $user->profile)
                     <a href="/post/create">Add New Post</a>
                 @endcan
+
             </div>
             @can('update', $user->profile)
                 <a href="/profile/{{ $user->id }}/edit">Edit Profile</a>
