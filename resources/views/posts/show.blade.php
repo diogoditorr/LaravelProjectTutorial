@@ -1,4 +1,6 @@
-<x-app-layout>
+@extends('layouts.app')
+
+@section('content')
     <div>
         <div>
             <img src="/storage/{{ $post->image }}" alt="">
@@ -26,4 +28,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection
